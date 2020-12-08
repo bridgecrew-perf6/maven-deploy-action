@@ -16,6 +16,7 @@ git clone $REPOSITORY /project
 
 cd /project 
 if [ -e "$KEEP_OLD_VERSION"]
+then 
     if [ ! -z "$MAVEN_VERSION"]
     then
         echo "Get old version ..."
