@@ -1,10 +1,6 @@
 #!/bin/bash
 
 set -e
-NEW_MAVEN_VERSION=`$MAVEN_VERSION`
-echo $MAVEN_VERSION
-echo $NEW_MAVEN_VERSION
-exit 1
 
 echo $SETTINGS_VALUE >> /settings.xml
 
@@ -39,7 +35,6 @@ else
         mvn --settings /settings.xml versions:set -DnewVersion=$NEW_MAVEN_VERSION
     fi
 fi
-
 
 
 echo "Deploy maven project with customize config ..."
