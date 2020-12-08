@@ -35,8 +35,6 @@ else
 fi
 
 
-
-exit 1;
 echo "Deploy maven project with customize config ..."
 mvn deploy --settings /settings.xml -Dmaven.test.skip=true
 
