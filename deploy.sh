@@ -15,7 +15,9 @@ echo "Clone from git repository ..."
 git clone $REPOSITORY /project
 
 cd /project 
-if [ -e "$KEEP_OLD_VERSION"]
+
+
+if [ "$KEEP_OLD_VERSION" == "true"]
 then 
     if [ ! -z "$MAVEN_VERSION"]
     then
@@ -31,6 +33,8 @@ else
         mvn versions:set -DnewVersion=$MAVEN_VERSION
     fi
 fi
+
+
 echo "Deploy maven project with customize config ..."
 mvn deploy --settings /settings.xml -Dmaven.test.skip=true
 
