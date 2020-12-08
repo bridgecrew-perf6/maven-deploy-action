@@ -15,11 +15,20 @@ echo "Clone from git repository ..."
 git clone $REPOSITORY /project
 
 cd /project 
-
-if [ ! -z "$MAVEN_VERSION"]
-then
-    echo "Update project maven version..."
-    mvn versions:set -DnewVersion=$MAVEN_VERSION
+if [ -e "$KEEP_OLD_VERSION"]
+    if [ ! -z "$MAVEN_VERSION"]
+    then
+        echo "Get old version ..."
+        OLD_VERSION=`mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout`
+        echo "Update project maven version..."
+        mvn versions:set -DnewVersion=$OLD_VERSION.$MAVEN_VERSION
+    fi
+else
+    if [ ! -z "$MAVEN_VERSION"]
+    then
+        echo "Update project maven version..."
+        mvn versions:set -DnewVersion=$MAVEN_VERSION
+    fi
 fi
 echo "Deploy maven project with customize config ..."
 mvn deploy --settings /settings.xml -Dmaven.test.skip=true
