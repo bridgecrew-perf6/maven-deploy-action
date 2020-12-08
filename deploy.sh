@@ -22,19 +22,21 @@ then
     if [ ! -z "$MAVEN_VERSION" ]
     then
         echo "Get old version ..."
-        OLD_VERSION=`mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout`
+        OLD_VERSION=`mvn --settings /settings.xml org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout`
         echo "Update project maven version..."
-        mvn versions:set -DnewVersion=$OLD_VERSION.$MAVEN_VERSION
+        mvn --settings /settings.xml versions:set -DnewVersion=$OLD_VERSION.$MAVEN_VERSION
     fi
 else
     if [ ! -z "$MAVEN_VERSION" ]
     then
         echo "Update project maven version..."
-        mvn versions:set -DnewVersion=$MAVEN_VERSION
+        mvn --settings /settings.xml versions:set -DnewVersion=$MAVEN_VERSION
     fi
 fi
 
 
+
+exit 1;
 echo "Deploy maven project with customize config ..."
 mvn deploy --settings /settings.xml -Dmaven.test.skip=true
 
