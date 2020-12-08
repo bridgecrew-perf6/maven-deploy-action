@@ -2,6 +2,9 @@
 
 set -e
 
+echo $MAVEN_VERSION
+exit 1
+
 echo $SETTINGS_VALUE >> /settings.xml
 
 if [ -z "$REPOSITORY" ]
@@ -33,6 +36,7 @@ else
         mvn --settings /settings.xml versions:set -DnewVersion=$MAVEN_VERSION
     fi
 fi
+
 
 
 echo "Deploy maven project with customize config ..."
