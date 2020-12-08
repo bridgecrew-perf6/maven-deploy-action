@@ -1,0 +1,6 @@
+name: 'Maven Deploy Action'
+description: 'This GitHub action will handle the building and deploying process of maven project.'
+author: 'pangyuworld'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
