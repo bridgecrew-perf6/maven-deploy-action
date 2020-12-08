@@ -16,6 +16,11 @@ git clone $REPOSITORY /project
 
 cd /project 
 
+if [ ! -z "$MAVEN_VERSION"]
+then
+    echo "Update project maven version..."
+    mvn versions:set -DnewVersion=$MAVEN_VERSION
+fi
 echo "Deploy maven project with customize config ..."
 mvn deploy --settings /settings.xml -Dmaven.test.skip=true
 
