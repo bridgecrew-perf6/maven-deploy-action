@@ -17,9 +17,9 @@ git clone $REPOSITORY /project
 cd /project 
 
 
-if [ "$KEEP_OLD_VERSION" == "true"]
+if [ "$KEEP_OLD_VERSION" == "true" ]
 then 
-    if [ ! -z "$MAVEN_VERSION"]
+    if [ ! -z "$MAVEN_VERSION" ]
     then
         echo "Get old version ..."
         OLD_VERSION=`mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout`
@@ -27,7 +27,7 @@ then
         mvn versions:set -DnewVersion=$OLD_VERSION.$MAVEN_VERSION
     fi
 else
-    if [ ! -z "$MAVEN_VERSION"]
+    if [ ! -z "$MAVEN_VERSION" ]
     then
         echo "Update project maven version..."
         mvn versions:set -DnewVersion=$MAVEN_VERSION
